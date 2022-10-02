@@ -1,0 +1,6 @@
+Flask
+requests
+flask_sqlalchemy
+jupyter
+jupyterlab
+psycopg2-binary
