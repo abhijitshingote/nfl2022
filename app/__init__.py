@@ -11,12 +11,12 @@ import requests
 
 
 def create_app():
-    app = Flask(__name__)
+    application = Flask(__name__)
     # app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://postgres:password@postgres:5432/maindb'
     # register_extensions(app)
-    return app
+    return application
 
-app=create_app()
+application=create_app()
 # with app.app_context():
 #     db.create_all()
 from app import routes

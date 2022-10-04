@@ -1,13 +1,13 @@
-from app import app #,db
+from app import application #,db
 # from app.models import Team,Game
 from flask import render_template
 import requests
 
-@app.route("/")
+@application.route("/")
 def hello_world():
     return "<p>Hello, Radhika World!!!!</p>"
 
-@app.route("/index/")
+@application.route("/index/")
 def teams_():
     response=requests.get('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32').json()['items']
     teams=[]
