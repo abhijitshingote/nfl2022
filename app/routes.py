@@ -20,12 +20,12 @@ def teams_():
         teams.append(team)
     return render_template('index.html',teams=teams)
 
-@app.route("/teams/")
+@application.route("/teams/")
 def teams():
     teams=Team.query.all()
     return render_template('teams.html',teams=teams)
 
-@app.route("/teams/<id>/")
+@application.route("/teams/<id>/")
 def team_events(id):
     team=db.session.query(Team).filter(Team.team_id==id).all()[0]
     games=db.session.query(Game).filter((Game.home_team_id==id) | (Game.away_team_id==id) ).order_by(Game.game_date)
