@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 import requests
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 db=SQLAlchemy()
 
