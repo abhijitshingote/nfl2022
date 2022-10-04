@@ -13,7 +13,13 @@ def register_extensions(app):
 def create_app():
     application = Flask(__name__)
     # application.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://postgres:password@postgres:5432/maindb'
-    application.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{os.environ['RDS_USERNAME']}:{os.environ['RDS_PASSWORD']}@{os.environ['RDS_HOSTNAME']}:{os.environ['RDS_PORT']}/{os.environ['RDS_DB_NAME']}'
+
+    NAME=os.environ['RDS_DB_NAME']
+    USER= os.environ['RDS_USERNAME']
+    PASSWORD= os.environ['RDS_PASSWORD']
+    HOST= os.environ['RDS_HOSTNAME']
+    PORT= os.environ['RDS_PORT']
+    application.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{USER}:{PASSWORD}@{HOSTNAME}:{PORT}/{NAME}'
     register_extensions(application)
     return application
 
