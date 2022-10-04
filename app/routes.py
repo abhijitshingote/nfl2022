@@ -1,5 +1,5 @@
-from app import application #,db
-# from app.models import Team,Game
+from app import application,db
+from app.models import Team,Game
 from flask import render_template
 import requests
 
@@ -20,13 +20,13 @@ def teams_():
         teams.append(team)
     return render_template('index.html',teams=teams)
 
-# @app.route("/teams/")
-# def teams():
-#     teams=Team.query.all()
-#     return render_template('teams.html',teams=teams)
+@app.route("/teams/")
+def teams():
+    teams=Team.query.all()
+    return render_template('teams.html',teams=teams)
 
-# @app.route("/teams/<id>/")
-# def team_events(id):
-#     team=db.session.query(Team).filter(Team.team_id==id).all()[0]
-#     games=db.session.query(Game).filter((Game.home_team_id==id) | (Game.away_team_id==id) ).order_by(Game.game_date)
-#     return render_template('games.html',games=games,team=team)
+@app.route("/teams/<id>/")
+def team_events(id):
+    team=db.session.query(Team).filter(Team.team_id==id).all()[0]
+    games=db.session.query(Game).filter((Game.home_team_id==id) | (Game.away_team_id==id) ).order_by(Game.game_date)
+    return render_template('games.html',games=games,team=team)
