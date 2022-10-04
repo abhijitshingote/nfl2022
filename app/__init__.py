@@ -20,7 +20,7 @@ def create_app():
     PASSWORD= os.environ['RDS_PASSWORD']
     HOST= os.environ['RDS_HOSTNAME']
     PORT= os.environ['RDS_PORT']
-    application.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{USER}:{PASSWORD}@{HOSTNAME}:{PORT}/{NAME}'
+    application.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
     register_extensions(application)
     return application
 
