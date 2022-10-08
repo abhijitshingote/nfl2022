@@ -70,7 +70,7 @@ def add_Teams(session):
         
         
 def add_Games(session):
-    for team in session.query(Team).all()[:1]:
+    for team in session.query(Team).all():
         print(f'Processing {team.team_location + team.team_name}') 
         response=requests.get(f'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/{team.team_id}/events')
         for event in response.json()['items']:
