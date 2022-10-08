@@ -27,6 +27,8 @@ services:
   flaskapp:
     platform: linux/amd64
     container_name: flaskapp
+    depends_on:
+      - postgres
     build: .
     ports: 
       - "80:80"
