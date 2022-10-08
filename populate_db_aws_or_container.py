@@ -8,10 +8,10 @@ import time
 
 user='postgres'
 password='password'
-host='postgres'
+host='localhost'
 db='maindb'
 engine = create_engine(f'postgresql+psycopg2://{user}:{password}@{host}:5432/{db}')
-engine = create_engine(f'postgresql+psycopg2://abhijit:masterradhika@awseb-e-ygd4gbhqep-stack-awsebrdsdatabase-rhau64iyrzj3.cvecty0kpthu.us-east-1.rds.amazonaws.com:5432/ebdb')
+# engine = create_engine(f'postgresql+psycopg2://abhijit:masterradhika@awseb-e-ygd4gbhqep-stack-awsebrdsdatabase-rhau64iyrzj3.cvecty0kpthu.us-east-1.rds.amazonaws.com:5432/ebdb')
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
