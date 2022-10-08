@@ -2,6 +2,17 @@ from app import app,db
 from app.models import Team,Game
 from flask import render_template
 
+from datetime import datetime
+import pytz
+
+@app.context_processor
+def inject_now():
+    def convert_dt_to_est(datetimeobj):
+        return datetimeobj.astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%b-%d %I:%M %p')
+    return {'now': datetime.utcnow(),
+            'pytz':pytz,
+            'convert_dt_to_est':convert_dt_to_est}
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, Radhika World!!!!</p>"
@@ -27,5 +38,5 @@ def teams():
 @app.route("/teams/<id>/")
 def team_events(id):
     team=db.session.query(Team).filter(Team.team_id==id).all()[0]
-    games=db.session.query(Game).filter((Game.home_team_id==id) | (Game.away_team_id==id) ).order_by(Game.game_date)
+    games=db.session.query(Game).filter(Game.season_type=='2').filter((Game.home_team_id==id) | (Game.away_team_id==id) ).order_by(Game.game_date)
     return render_template('games.html',games=games,team=team)
