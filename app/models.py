@@ -4,7 +4,8 @@ class Team(db.Model):
     team_id = db.Column(db.Integer, primary_key=True,autoincrement=False)
     team_location = db.Column(db.String, unique=False, nullable=False)
     team_name = db.Column(db.String, unique=True, nullable=False)
-    logo_href = db.Column(db.String, unique=True, nullable=False)   
+    logo_href = db.Column(db.String, unique=True, nullable=False)
+    division = db.Column(db.String, unique=False, nullable=False)
 
 class Game(db.Model):
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)

@@ -13,26 +13,28 @@ def inject_now():
             'pytz':pytz,
             'convert_dt_to_est':convert_dt_to_est}
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, Radhika World!!!!</p>"
+# @app.route("/")
+# def hello_world():
+#     return """<p><a href="{{url_for('teams')}}">All Teams</a></p>"""
 
-@app.route("/index/")
+@app.route("/")
 def teams_():
-    response=requests.get('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32').json()['items']
-    teams=[]
-    for r in response:
-        team={}
-        response=requests.get(r['$ref']).json()
-        team['location']=response['location']
-        team['name']=response['name']
-        team['logo']=response['logos'][0]['href']
-        teams.append(team)
-    return render_template('index.html',teams=teams)
+    # response=requests.get('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32').json()['items']
+    # teams=[]
+    # for r in response:
+    #     team={}
+    #     response=requests.get(r['$ref']).json()
+    #     team['location']=response['location']
+    #     team['name']=response['name']
+    #     team['logo']=response['logos'][0]['href']
+    #     teams.append(team)
+    return render_template('index.html')
 
 @app.route("/teams/")
 def teams():
-    teams=Team.query.all()
+    teams={}
+    for division in ['NFC South','NFC North','AFC North','AFC South','AFC East','AFC West','NFC West','NFC East']:
+        teams[division]=Team.query.filter(Team.division==division)
     return render_template('teams.html',teams=teams)
 
 @app.route("/teams/<id>/")

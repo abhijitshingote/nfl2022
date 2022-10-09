@@ -21,7 +21,8 @@ class Team(Base):
     team_id = Column(Integer, primary_key=True,autoincrement=False)
     team_location = Column(String, unique=False, nullable=False)
     team_name = Column(String, unique=True, nullable=False)
-    logo_href = Column(String, unique=True, nullable=False)   
+    logo_href = Column(String, unique=True, nullable=False)
+    division = Column(String, unique=False, nullable=False) 
     
 class Game(Base):
     __tablename__="game"
@@ -63,7 +64,8 @@ def add_Teams(session):
         team=Team(team_id=response['id'],
                   team_location=response['location'],
              team_name=response['name'],
-             logo_href=response['logos'][0]['href'])
+             logo_href=response['logos'][0]['href'],
+             division=requests.get(response['groups']['$ref']).json()['name'])
         if int(response['id']) not in [t.team_id for t in session.query(Team).all()]:
             session.add(team)
             session.commit()

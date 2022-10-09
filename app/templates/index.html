@@ -1,6 +1,4 @@
-<h1>Hello Radhika</h1>
+<p>Hello, Radhika World!!!!</p>
 <h1> Philadelphia Eagles are the best team EVERRR!! Rad is the best girl EVERRR!! </h1>
 <h2>India is best cricket team ever!</h2>
-{% for team in teams %}
-<p style="vertical-align: middle;"><img src="{{team.logo}}" width="auto" height="20" > {{team.location+' '+team.name}}</p>
-{% endfor %}
+<p><a href="{{url_for('teams')}}">All Teams</a></p>
