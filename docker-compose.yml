@@ -13,16 +13,16 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       
-  pgadmin:
-    platform: linux/amd64
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=abhijit.shingote@zelis.com
-      - PGADMIN_DEFAULT_PASSWORD=password
-    ports:
-      - "5050:5050"
-    restart: always
+  # pgadmin:
+  #   platform: linux/amd64
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4:latest
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=abhijit.shingote@zelis.com
+  #     - PGADMIN_DEFAULT_PASSWORD=password
+  #   ports:
+  #     - "5050:5050"
+  #   restart: always
 
   flaskapp:
     platform: linux/amd64
