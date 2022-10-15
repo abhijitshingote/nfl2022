@@ -1,6 +1,7 @@
 from app import app,db
 from app.models import Team,Game
 from flask import render_template
+import requests
 
 from datetime import datetime
 import pytz
@@ -19,16 +20,13 @@ def inject_now():
 
 @app.route("/")
 def teams_():
-    # response=requests.get('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32').json()['items']
-    # teams=[]
-    # for r in response:
-    #     team={}
-    #     response=requests.get(r['$ref']).json()
-    #     team['location']=response['location']
-    #     team['name']=response['name']
-    #     team['logo']=response['logos'][0]['href']
-    #     teams.append(team)
-    return render_template('index.html')
+    response=requests.get('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events').json()
+    week=response['$meta']['parameters']['week'][0]
+    print(f'Week:{week}')
+    games=db.session.query(Game).filter(Game.season_type=='2').filter((Game.game_number==week)).order_by(Game.game_date)
+    # games=response
+    print(games)
+    return render_template('index.html',games=games)
 
 @app.route("/teams/")
 def teams():
