@@ -7,12 +7,7 @@
 {% for game in games %}
 <tr><td>	{{convert_dt_to_est(game.game_date)}}</td>
 	<td>{{game.game_name}}</td>
-	<td>{% if game.game_date < now %}
-		{% if game.winner_team_id==team.team_id %}
-		    <b>W</b> 
-		{% else %} 
-		L
-		{% endif %}{% endif %}</td>
+
 		<td>{% if game.game_date < now %}{{game.home_team_score}} - {{game.away_team_score}}{% endif %}</td>
 	
 </tr>
