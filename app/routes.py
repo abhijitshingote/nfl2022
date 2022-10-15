@@ -9,7 +9,7 @@ import pytz
 @app.context_processor
 def inject_now():
     def convert_dt_to_est(datetimeobj):
-        return datetimeobj.astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%b-%d %I:%M %p')
+        return datetimeobj.astimezone(pytz.timezone('US/Eastern')).strftime('%Y-%b-%d----%A %I:%M %p')
     return {'now': datetime.utcnow(),
             'pytz':pytz,
             'convert_dt_to_est':convert_dt_to_est}
